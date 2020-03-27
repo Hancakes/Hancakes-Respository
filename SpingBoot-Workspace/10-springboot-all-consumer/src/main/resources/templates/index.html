@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>springboot+dubbo+mybats+readis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:href="@{/js/jquery.min.js}"></script>
+    <script th:href="@{/js/popper.min.js}"></script>
+    <script th:href="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <br>
+    <h2 align="center">springboot+dubbo+mybats+readis</h2><br>
+  <!--<p>联合使用 .table-dark 和 .table-hover 类可以设置黑色背景表格的鼠标悬停效果：</p>-->
+    <table class="table table-dark table-hover">
+        <caption><a th:href="@{/User/addShow}">添加用户</a></caption>
+        <thead>
+            <tr style="color: cyan">
+                <th>编号</th>
+                <th>姓名</th>
+                <th>手机</th>
+                <th>邮箱</th>
+                <th>住址</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="user : ${userList}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.nick}"></td>
+                <td th:text="${user.phone}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.address}"></td>
+                <td>
+                    <a th:href="@{'/user/updateShow?id='+${user.id}}">修改</a>
+                    <a th:href="@{'/user/delete?id='+${user.id}}">删除</a>
+                </td>
+            </tr>
+
+        <tr style="text-align: center">
+            <td colspan="6">
+                <span th:if="${curPage}<=1">
+                    首页
+                    上一页
+                </span>
+
+                <span th:if="${curPage}>1">
+                    <a th:href="@{/index}"> 首页 </a>
+                    <a th:href="@{'/index?curPage='+${curPage-1}}">上一页</a>
+                </span>
+
+                <!--curPage当前页
+                    totaPages 总共几页-->
+                <span th:if="${curPage == totaPages}">
+                    下一页
+                    尾页
+                </span>
+
+                <span th:if="${curPage < totaPages}  ">
+                    <a th:href="@{|/index?curPage=${curPage+1}|}">下一页</a>
+                    <a th:href="@{|/index?curPage=${totaPages}|}"> 尾页 </a>
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
