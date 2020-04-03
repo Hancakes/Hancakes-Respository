@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hancakes.dao.TempDao">
+    <insert id="insert" parameterType="Temp">
+        insert into t_temp value(#{id},#{name},#{salary},#{age})
+    </insert>
+
+    <select id="selectTemp" resultType="Temp">
+        select id,name,salary,age from t_temp
+    </select>
+
+    <select id="updatebyid" parameterType="String" resultType="Temp">
+        select id,name,salary,age from t_temp where id=#{id}
+    </select>
+
+    <update id="getUpdate" parameterType="Temp">
+        update t_temp set name=#{name},salary=#{salary},age=#{age} where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="String">
+        delete from t_temp where id=#{id}
+    </delete>
+</mapper>

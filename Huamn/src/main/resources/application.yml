@@ -1,0 +1,21 @@
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+  application:
+    name: /Huamn  #应用服务名称
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver  #注册驱动
+    url: jdbc:mysql://localhost:3306/huamn?characterEncoding=UTF-8&serverTimezone=UTC
+    password: 123456
+    username: root
+server:
+  servlet:
+    context-path: /Huamn   #设置项目名称；
+    jsp:
+      init-parameters:
+        development: true    #开启jsp页面热部署
+mybatis:
+  mapper-locations: classpath:com/hancakes/mapper/*.xml  #mapper配置文件的位置
+  type-aliases-package: com.hancakes.entity  #设置别名
